@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -59,7 +58,7 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="Active Like"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27 Августа 2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJM-e2-Ku2">
-                                                    <rect key="frame" x="24.000000000000007" y="196" width="103.66666666666669" height="16"/>
+                                                    <rect key="frame" x="23.999999999999993" y="196" width="98.333333333333314" height="16"/>
                                                     <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="13"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -82,8 +81,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="cellImageView" destination="W9J-bH-TqM" id="ij3-yZ-qPd"/>
                                             <outlet property="dateLabel" destination="TJM-e2-Ku2" id="xkM-fb-Dwk"/>
-                                            <outlet property="imageViewCell" destination="W9J-bH-TqM" id="ij3-yZ-qPd"/>
                                             <outlet property="likeButton" destination="QBN-r5-b6S" id="lGY-En-ypc"/>
                                         </connections>
                                     </tableViewCell>

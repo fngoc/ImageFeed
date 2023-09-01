@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
 
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet weak private var tableView: UITableView!
 
     private let photoName: [String] = Array(0..<20).map { "\($0)" }
     
@@ -27,6 +27,7 @@ class ImagesListViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension ImagesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,22 +36,22 @@ extension ImagesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
-        
+
         guard let imageListCell = cell as? ImagesListCell else {
             return UITableViewCell()
         }
-        
+
         configCell(for: imageListCell, with: indexPath)
         
         return imageListCell
     }
     
-    func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
+    private func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
         guard let image = UIImage(named: photoName[indexPath.row]) else {
             return
         }
 
-        cell.imageViewCell.image = image
+        cell.cellImageView.image = image
         cell.dateLabel.text = dateFormatter.string(from: Date())
         
         let like: String = indexPath.row % 2 == 0 ? "Active Like" : "No Active Like"
@@ -60,6 +61,7 @@ extension ImagesListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension ImagesListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { }
