@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C60F398B2AA123FF0060C9BF /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C60F398A2AA123FF0060C9BF /* SF-Pro.ttf */; };
 		C61B492A2AB2370A003ACBF4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61B49292AB2370A003ACBF4 /* ProfileViewController.swift */; };
+		C66C7D072AB3308D00217744 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66C7D062AB3308D00217744 /* SingleImageViewController.swift */; };
 		C69407712A9A6BBF008ABD48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69407702A9A6BBF008ABD48 /* AppDelegate.swift */; };
 		C69407732A9A6BBF008ABD48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69407722A9A6BBF008ABD48 /* SceneDelegate.swift */; };
 		C69407752A9A6BBF008ABD48 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69407742A9A6BBF008ABD48 /* ImagesListViewController.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		C60F398A2AA123FF0060C9BF /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		C61B49292AB2370A003ACBF4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C66C7D062AB3308D00217744 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		C694076D2A9A6BBF008ABD48 /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C69407702A9A6BBF008ABD48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C69407722A9A6BBF008ABD48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				C69407762A9A6BBF008ABD48 /* Main.storyboard */,
 				C69407792A9A6BC2008ABD48 /* Assets.xcassets */,
 				C694077E2A9A6BC2008ABD48 /* Info.plist */,
+				C66C7D062AB3308D00217744 /* SingleImageViewController.swift */,
 			);
 			path = ImageFeed;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				C61B492A2AB2370A003ACBF4 /* ProfileViewController.swift in Sources */,
 				C69407752A9A6BBF008ABD48 /* ImagesListViewController.swift in Sources */,
 				C6BC0B7F2A9FADEF00028FAF /* UIColor+Extensions.swift in Sources */,
+				C66C7D072AB3308D00217744 /* SingleImageViewController.swift in Sources */,
 				C6BC0B812A9FC41800028FAF /* ImagesListCell.swift in Sources */,
 				C69407712A9A6BBF008ABD48 /* AppDelegate.swift in Sources */,
 				C69407732A9A6BBF008ABD48 /* SceneDelegate.swift in Sources */,
@@ -339,7 +343,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageFeed/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -370,7 +374,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageFeed/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
