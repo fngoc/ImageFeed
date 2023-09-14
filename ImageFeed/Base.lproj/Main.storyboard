@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qdm-4i-VVu">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="SF-Pro.ttf">
+            <string>SFPro-Bold</string>
             <string>SFPro-Regular</string>
         </array>
     </customFonts>
     <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="mLZ-By-efF">
+            <objects>
+                <tabBarController id="Qdm-4i-VVu" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WKx-sW-NXx">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="selectedImageTintColor" name="White"/>
+                        <tabBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" name="Black"/>
+                        </tabBarAppearance>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="sGW-7C-WZo"/>
+                        <segue destination="EZa-zd-buk" kind="relationship" relationship="viewControllers" id="psG-je-01B"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hli-QN-cDn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2198" y="108"/>
+        </scene>
         <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -58,7 +82,7 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="Active Like"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27 Августа 2022" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJM-e2-Ku2">
-                                                    <rect key="frame" x="23.999999999999993" y="196" width="98.333333333333314" height="16"/>
+                                                    <rect key="frame" x="24.000000000000007" y="196" width="103.66666666666669" height="16"/>
                                                     <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="13"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -94,7 +118,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Black"/>
                         <constraints>
                             <constraint firstItem="dJT-54-twb" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="5hg-N2-hZk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dJT-54-twb" secondAttribute="trailing" id="JsF-fZ-mGd"/>
@@ -102,19 +126,106 @@
                             <constraint firstItem="dJT-54-twb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xNK-s3-hwb"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="Main Active" id="9Ke-Le-70Q"/>
                     <connections>
                         <outlet property="tableView" destination="dJT-54-twb" id="zyV-71-aeW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="57.251908396946561" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="-1140" y="-261"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="TGy-IA-grH">
+            <objects>
+                <viewController title="Profile" id="EZa-zd-buk" customClass="ProfileViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ryF-sa-V6p">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="IXv-eu-6zl">
+                                <rect key="frame" x="16" y="80" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="O6P-nZ-Nf2"/>
+                                    <constraint firstAttribute="height" constant="70" id="Vll-Vc-zvQ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0O9-gP-TdW" userLabel="Logout">
+                                <rect key="frame" x="309" y="80" width="68" height="58"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Exit"/>
+                                <connections>
+                                    <action selector="didTapLogoutButton:" destination="EZa-zd-buk" eventType="touchUpInside" id="mdz-u7-EPn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Екатерина Новикова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwl-11-B54" userLabel="Name">
+                                <rect key="frame" x="16" y="158" width="361" height="27"/>
+                                <fontDescription key="fontDescription" name="SFPro-Bold" family="SF Pro" pointSize="23"/>
+                                <color key="textColor" name="White"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, world!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8d-ob-u30" userLabel="Discription">
+                                <rect key="frame" x="16" y="216.66666666666666" width="361" height="15.666666666666657"/>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="13"/>
+                                <color key="textColor" name="White"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="@ekaterina_nov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ark-gB-BU3" userLabel="Login">
+                                <rect key="frame" x="16" y="193" width="361" height="15.666666666666657"/>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="13"/>
+                                <color key="textColor" name="Gray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VmO-F2-uP6"/>
+                        <color key="backgroundColor" name="Black"/>
+                        <constraints>
+                            <constraint firstItem="e8d-ob-u30" firstAttribute="leading" secondItem="VmO-F2-uP6" secondAttribute="leading" constant="16" id="0L4-CQ-6c8"/>
+                            <constraint firstItem="Cwl-11-B54" firstAttribute="leading" secondItem="VmO-F2-uP6" secondAttribute="leading" constant="16" id="1N0-vh-IeU"/>
+                            <constraint firstItem="VmO-F2-uP6" firstAttribute="trailing" secondItem="e8d-ob-u30" secondAttribute="trailing" constant="16" id="5JT-19-mgd"/>
+                            <constraint firstItem="0O9-gP-TdW" firstAttribute="top" secondItem="ryF-sa-V6p" secondAttribute="top" constant="80" id="IIu-tP-E6M"/>
+                            <constraint firstItem="Cwl-11-B54" firstAttribute="top" secondItem="IXv-eu-6zl" secondAttribute="bottom" constant="8" id="MUG-YU-8Pr"/>
+                            <constraint firstItem="IXv-eu-6zl" firstAttribute="leading" secondItem="VmO-F2-uP6" secondAttribute="leading" constant="16" id="Nik-t4-vj4"/>
+                            <constraint firstItem="ark-gB-BU3" firstAttribute="leading" secondItem="VmO-F2-uP6" secondAttribute="leading" constant="16" id="PkO-R5-o4D"/>
+                            <constraint firstItem="ark-gB-BU3" firstAttribute="top" secondItem="Cwl-11-B54" secondAttribute="bottom" constant="8" id="Qgq-ka-kd7"/>
+                            <constraint firstItem="e8d-ob-u30" firstAttribute="top" secondItem="ark-gB-BU3" secondAttribute="bottom" constant="8" id="SiW-HE-6Nf"/>
+                            <constraint firstItem="IXv-eu-6zl" firstAttribute="top" secondItem="ryF-sa-V6p" secondAttribute="top" constant="80" id="TWH-0Y-n2k"/>
+                            <constraint firstItem="0O9-gP-TdW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IXv-eu-6zl" secondAttribute="trailing" id="YQX-45-jD6"/>
+                            <constraint firstItem="VmO-F2-uP6" firstAttribute="trailing" secondItem="Cwl-11-B54" secondAttribute="trailing" constant="16" id="ZbU-lK-K3d"/>
+                            <constraint firstItem="VmO-F2-uP6" firstAttribute="trailing" secondItem="ark-gB-BU3" secondAttribute="trailing" constant="16" id="hqi-NM-bWw"/>
+                            <constraint firstItem="VmO-F2-uP6" firstAttribute="trailing" secondItem="0O9-gP-TdW" secondAttribute="trailing" constant="16" id="tC0-0I-4tM"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="Profile Active" id="mZZ-QA-eG5"/>
+                    <connections>
+                        <outlet property="profileImageLabel" destination="IXv-eu-6zl" id="A67-g8-VrF"/>
+                        <outlet property="profileLoginLabel" destination="ark-gB-BU3" id="t8A-49-wYg"/>
+                        <outlet property="profileNameLabel" destination="Cwl-11-B54" id="Cgb-US-gqe"/>
+                        <outlet property="profileTextLabel" destination="e8d-ob-u30" id="fJl-sk-pRs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QNS-BT-CGg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1141" y="438"/>
         </scene>
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
-        <image name="Active" width="30" height="28"/>
+        <image name="Active" width="30" height="30"/>
         <image name="Active Like" width="30" height="28"/>
+        <image name="Exit" width="44" height="44"/>
         <image name="Gradient" width="343" height="30"/>
+        <image name="Main Active" width="30" height="30"/>
+        <image name="Photo" width="70" height="70"/>
+        <image name="Profile Active" width="30" height="30"/>
+        <namedColor name="Black">
+            <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Gray">
+            <color red="0.68199998140335083" green="0.68599998950958252" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="White">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

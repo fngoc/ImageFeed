@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C60F398B2AA123FF0060C9BF /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C60F398A2AA123FF0060C9BF /* SF-Pro.ttf */; };
+		C61B492A2AB2370A003ACBF4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61B49292AB2370A003ACBF4 /* ProfileViewController.swift */; };
 		C69407712A9A6BBF008ABD48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69407702A9A6BBF008ABD48 /* AppDelegate.swift */; };
 		C69407732A9A6BBF008ABD48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69407722A9A6BBF008ABD48 /* SceneDelegate.swift */; };
 		C69407752A9A6BBF008ABD48 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69407742A9A6BBF008ABD48 /* ImagesListViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		C60F398A2AA123FF0060C9BF /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		C61B49292AB2370A003ACBF4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C694076D2A9A6BBF008ABD48 /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C69407702A9A6BBF008ABD48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C69407722A9A6BBF008ABD48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		C6121DBB2AB311E200806C5C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C61B49292AB2370A003ACBF4 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		C69407642A9A6BBF008ABD48 = {
 			isa = PBXGroup;
 			children = (
@@ -73,11 +83,12 @@
 				C69407702A9A6BBF008ABD48 /* AppDelegate.swift */,
 				C69407722A9A6BBF008ABD48 /* SceneDelegate.swift */,
 				C6BC0B822A9FC44A00028FAF /* ImagesList */,
+				C6121DBB2AB311E200806C5C /* Profile */,
 				C6BC0B7D2A9FADBE00028FAF /* Helpers */,
 				C60F39892AA123EC0060C9BF /* Fonts */,
+				C694077B2A9A6BC2008ABD48 /* LaunchScreen.storyboard */,
 				C69407762A9A6BBF008ABD48 /* Main.storyboard */,
 				C69407792A9A6BC2008ABD48 /* Assets.xcassets */,
-				C694077B2A9A6BC2008ABD48 /* LaunchScreen.storyboard */,
 				C694077E2A9A6BC2008ABD48 /* Info.plist */,
 			);
 			path = ImageFeed;
@@ -172,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C61B492A2AB2370A003ACBF4 /* ProfileViewController.swift in Sources */,
 				C69407752A9A6BBF008ABD48 /* ImagesListViewController.swift in Sources */,
 				C6BC0B7F2A9FADEF00028FAF /* UIColor+Extensions.swift in Sources */,
 				C6BC0B812A9FC41800028FAF /* ImagesListCell.swift in Sources */,
@@ -327,7 +339,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageFeed/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -358,7 +370,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImageFeed/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = Main.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
