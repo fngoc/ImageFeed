@@ -9,10 +9,10 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    @IBOutlet private weak var profileLoginLabel: UILabel!
-    @IBOutlet private weak var profileImageLabel: UIImageView!
-    @IBOutlet private weak var profileTextLabel: UILabel!
-    @IBOutlet private weak var profileNameLabel: UILabel!
+    @IBOutlet weak private var profileLoginLabel: UILabel!
+    @IBOutlet weak private var profileImageLabel: UIImageView!
+    @IBOutlet weak private var profileTextLabel: UILabel!
+    @IBOutlet weak private var profileNameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
