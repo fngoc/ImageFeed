@@ -32,7 +32,8 @@ final class SingleImageViewController: UIViewController {
         imageView.image = image
         rescaleAndCenterImageInScrollView(image: image)
     }
-    
+
+// MARK: - Actions
     @IBAction func didTapBackButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -45,6 +46,7 @@ final class SingleImageViewController: UIViewController {
         present(shareController, animated: true, completion: nil)
     }
     
+// MARK: - Private
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale

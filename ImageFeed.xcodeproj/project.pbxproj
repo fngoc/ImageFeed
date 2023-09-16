@@ -92,7 +92,6 @@
 				C69407762A9A6BBF008ABD48 /* Main.storyboard */,
 				C69407792A9A6BC2008ABD48 /* Assets.xcassets */,
 				C694077E2A9A6BC2008ABD48 /* Info.plist */,
-				C66C7D062AB3308D00217744 /* SingleImageViewController.swift */,
 			);
 			path = ImageFeed;
 			sourceTree = "<group>";
@@ -110,6 +109,7 @@
 			children = (
 				C69407742A9A6BBF008ABD48 /* ImagesListViewController.swift */,
 				C6BC0B802A9FC41800028FAF /* ImagesListCell.swift */,
+				C66C7D062AB3308D00217744 /* SingleImageViewController.swift */,
 			);
 			path = ImagesList;
 			sourceTree = "<group>";
