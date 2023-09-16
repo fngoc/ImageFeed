@@ -11,8 +11,7 @@ final class SingleImageViewController: UIViewController {
     
     @IBOutlet weak private var imageView: UIImageView!
     @IBOutlet weak private var scrollView: UIScrollView!
-    
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak private var saveButton: UIButton!
     
     var image: UIImage! {
         didSet {
@@ -32,13 +31,13 @@ final class SingleImageViewController: UIViewController {
         imageView.image = image
         rescaleAndCenterImageInScrollView(image: image)
     }
-
-// MARK: - Actions
-    @IBAction func didTapBackButton(_ sender: UIButton) {
+    
+    // MARK: - Actions
+    @IBAction private func didTapBackButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func didTapShareButton(_ sender: UIButton) {
+    @IBAction private func didTapShareButton(_ sender: UIButton) {
         let shareController = UIActivityViewController(
             activityItems: [imageView.image],
             applicationActivities: nil
@@ -46,7 +45,7 @@ final class SingleImageViewController: UIViewController {
         present(shareController, animated: true, completion: nil)
     }
     
-// MARK: - Private
+    // MARK: - Private
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
         let minZoomScale = scrollView.minimumZoomScale
         let maxZoomScale = scrollView.maximumZoomScale

@@ -8,9 +8,9 @@
 import UIKit
 
 final class ImagesListViewController: UIViewController {
-
+    
     @IBOutlet weak private var tableView: UITableView!
-
+    
     private let photoName: [String] = Array(0..<20).map { "\($0)" }
     
     private let showSingleImageIdentificator = "ShowSingleImage"
@@ -49,11 +49,11 @@ extension ImagesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
-
+        
         guard let imageListCell = cell as? ImagesListCell else {
             return UITableViewCell()
         }
-
+        
         configCell(for: imageListCell, with: indexPath)
         
         return imageListCell
@@ -63,7 +63,7 @@ extension ImagesListViewController: UITableViewDataSource {
         guard let image = UIImage(named: photoName[indexPath.row]) else {
             return
         }
-
+        
         cell.cellImageView.image = image
         cell.dateLabel.text = dateFormatter.string(from: Date())
         

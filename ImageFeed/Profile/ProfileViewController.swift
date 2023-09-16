@@ -29,13 +29,13 @@ final class ProfileViewController: UIViewController {
         constraintsLoad()
     }
     
-// MARK: - Actions
+    // MARK: - Actions
     @objc
     private func didTapLogoutButton(_ sender: UIButton) {
         print("Tap logout button")
     }
     
-// MARK: - Private Load UI
+    // MARK: - Private Load UI
     private func logoutButtonLoad() {
         self.logoutButton = UIButton.systemButton(
             with: UIImage(named: "Exit")!,
@@ -47,7 +47,7 @@ final class ProfileViewController: UIViewController {
             print("Logout button load failed")
             return
         }
-
+        
         logoutButton.tintColor = UIColor.myRed
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoutButton)
@@ -60,7 +60,7 @@ final class ProfileViewController: UIViewController {
             print("Text label load failed")
             return
         }
-
+        
         textLabel.text = "Hello, world!"
         textLabel.textColor = UIColor.myWhite
         textLabel.font = UIFont(name: "SF Pro", size: 13)
@@ -75,7 +75,7 @@ final class ProfileViewController: UIViewController {
             print("Login label load failed")
             return
         }
-
+        
         loginLabel.text = "@ekaterina_nov"
         loginLabel.textColor = UIColor.myGray
         loginLabel.font = UIFont(name: "SF Pro", size: 13)
@@ -90,7 +90,7 @@ final class ProfileViewController: UIViewController {
             print("Name label load failed")
             return
         }
-
+        
         nameLabel.text = "Екатерина Новикова"
         nameLabel.textColor = UIColor.myWhite
         nameLabel.font = UIFont(name: "SF Pro Bold", size: 23)
@@ -110,7 +110,7 @@ final class ProfileViewController: UIViewController {
         view.addSubview(imageView)
     }
     
-// MARK: - Private Load Constraints
+    // MARK: - Private Load Constraints
     private func constraintsLoad() {
         guard let imageView, let nameLabel, let loginLabel,
               let textLabel, let logoutButton else {
