@@ -6,10 +6,13 @@
 //
 
 import Foundation
+
+struct Constants {
     
-let AccessKey: String = "CN-XSAOp91q73hlhPpeSCjCfFYtE8bxFPF9AMYqLyXY"
-let SecretKey: String = "F9wMgszYjA0PcdXXicgmMuAm_UB-I6bA0f7UO6TTryw"
-let RedirectURI: String = "urn:ietf:wg:oauth:2.0:oob"
-let AccessScope: String = "public+read_user+write_likes"
-let DefaultBaseURL: URL = URL(string: "https://api.unsplash.com")!
-let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    static let accessKey: String = "CN-XSAOp91q73hlhPpeSCjCfFYtE8bxFPF9AMYqLyXY"
+    static let secretKey: String = "F9wMgszYjA0PcdXXicgmMuAm_UB-I6bA0f7UO6TTryw"
+    static let redirectURI: String = "urn:ietf:wg:oauth:2.0:oob"
+    static let accessScope: String = "public+read_user+write_likes"
+    static let defaultBaseURL: URL = URL(string: "https://api.unsplash.com")!
+    static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+}
