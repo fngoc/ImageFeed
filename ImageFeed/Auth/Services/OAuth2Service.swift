@@ -53,7 +53,7 @@ final class OAuth2Service {
         completion: @escaping (Result<OAuthTokenResponseBody, Error>) -> Void
     ) -> URLSessionTask {
         let decoder = JSONDecoder()
-        return session.data(for: request) { (result: Result<Data, Error>) in
+        return session.objectTask(for: request) { (result: Result<Data, Error>) in
             let response = result.flatMap { data -> Result<OAuthTokenResponseBody, Error> in
                 Result {
                     try decoder.decode(OAuthTokenResponseBody.self, from: data)
@@ -61,20 +61,6 @@ final class OAuth2Service {
             }
             completion(response)
         }
-    }
-    
-    private var selfProfileRequest: URLRequest {
-        URLRequest.makeHTTPRequest(
-            path: "/me",
-            httpMethod: "GET"
-        )
-    }
-    
-    private func profileImageURLRequest(username: String) -> URLRequest {
-        URLRequest.makeHTTPRequest(
-            path: "/users/\(username)",
-            httpMethod: "GET"
-        )
     }
     
     private func photosRequest(page: Int, perPage: Int) -> URLRequest {
