@@ -16,11 +16,22 @@ final class ProfileViewController: UIViewController {
     private var logoutButton: UIButton?
     
     private let profileService = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
     
     private var profileImageServiceObserver: NSObjectProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.myBlack
+        
+        imageViewLoad()
+        nameLabelLoad()
+        loginLabelLoad()
+        descriptionLabelLoad()
+        logoutButtonLoad()
+        
+        constraintsLoad()
         
         profileImageServiceObserver = NotificationCenter.default
             .addObserver(
@@ -32,21 +43,11 @@ final class ProfileViewController: UIViewController {
                 }
         updateAvatar()
         
-        view.backgroundColor = UIColor.myBlack
-        
-        imageViewLoad()
-        nameLabelLoad()
-        loginLabelLoad()
-        textLabelLoad()
-        logoutButtonLoad()
-        
-        constraintsLoad()
-        
         updateProfileDetails(profile: profileService.profile ?? Profile(
-            username: "Нет логина",
-            loginName: "Нет логина",
-            name: "Нет имени",
-            bio: "Нет описания")
+            username: "Логин не загрузился",
+            loginName: "Логин не загрузился",
+            name: "Имя не загрузилось",
+            bio: "Описание не загрузилось")
         )
     }
     
@@ -65,9 +66,10 @@ final class ProfileViewController: UIViewController {
     private func updateAvatar() {
         guard
             let profileImageURL = ProfileImageService.shared.avatarURL,
-            let url = URL(string: profileImageURL)
+            let url = URL(string: profileImageURL),
+            let imageView = imageView
         else { return }
-        // TODO: avatar load
+        profileImageService.avatarLoad(by: url, setIn: imageView)
     }
     
     // MARK: - Private Load UI
@@ -88,7 +90,7 @@ final class ProfileViewController: UIViewController {
         view.addSubview(logoutButton)
     }
     
-    private func textLabelLoad() {
+    private func descriptionLabelLoad() {
         self.descriptionLabel = UILabel()
         
         guard let descriptionLabel else {
@@ -96,7 +98,6 @@ final class ProfileViewController: UIViewController {
             return
         }
         
-        descriptionLabel.text = "Hello, world!"
         descriptionLabel.textColor = UIColor.myWhite
         descriptionLabel.font = UIFont(name: "SF Pro", size: 13)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -111,7 +112,6 @@ final class ProfileViewController: UIViewController {
             return
         }
         
-        loginLabel.text = "@ekaterina_nov"
         loginLabel.textColor = UIColor.myGray
         loginLabel.font = UIFont(name: "SF Pro", size: 13)
         loginLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -126,7 +126,6 @@ final class ProfileViewController: UIViewController {
             return
         }
         
-        nameLabel.text = "Екатерина Новикова"
         nameLabel.textColor = UIColor.myWhite
         nameLabel.font = UIFont(name: "SF Pro Bold", size: 23)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -134,7 +133,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func imageViewLoad() {
-        self.imageView = UIImageView(image: UIImage(named: "Photo"))
+        self.imageView = UIImageView(image: UIImage(named: "placeholder.png"))
         
         guard let imageView else {
             print("Image view load failed")
