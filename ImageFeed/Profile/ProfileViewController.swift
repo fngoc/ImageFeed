@@ -19,11 +19,14 @@ final class ProfileViewController: UIViewController {
     private let profileImageService = ProfileImageService.shared
     
     private var profileImageServiceObserver: NSObjectProtocol?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.myBlack
+        //Удаление всех ключей для теста
+        OAuth2TokenStorage.removeAllKeys()
+        
+        view.backgroundColor = .myBlack
         
         imageViewLoad()
         nameLabelLoad()
@@ -63,6 +66,7 @@ final class ProfileViewController: UIViewController {
         self.descriptionLabel?.text = profile.bio
     }
     
+    // MARK: - Private Load UI
     private func updateAvatar() {
         guard
             let profileImageURL = ProfileImageService.shared.avatarURL,
@@ -72,7 +76,6 @@ final class ProfileViewController: UIViewController {
         profileImageService.avatarLoad(by: url, setIn: imageView)
     }
     
-    // MARK: - Private Load UI
     private func logoutButtonLoad() {
         self.logoutButton = UIButton.systemButton(
             with: UIImage(named: "Exit")!,

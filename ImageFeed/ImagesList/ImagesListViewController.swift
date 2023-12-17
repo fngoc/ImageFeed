@@ -9,7 +9,7 @@ import UIKit
 
 final class ImagesListViewController: UIViewController {
     
-    @IBOutlet weak private var tableView: UITableView!
+    private var tableView: UITableView?
     
     private let photoName: [String] = Array(0..<20).map { "\($0)" }
     
@@ -24,8 +24,29 @@ final class ImagesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableViewLoad()
+    }
+    
+    private func tableViewLoad() {
+        tableView = UITableView()
         
+        guard let tableView else {
+            print("UITableView load failed")
+            return
+        }
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+        tableView.backgroundColor = .myBlack
+        
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,12 +71,13 @@ extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
+//        let imageListCell = ImagesListCell(style: .default, reuseIdentifier: nil)
+        
         guard let imageListCell = cell as? ImagesListCell else {
             return UITableViewCell()
         }
         
         configCell(for: imageListCell, with: indexPath)
-        
         return imageListCell
     }
     
@@ -64,12 +86,12 @@ extension ImagesListViewController: UITableViewDataSource {
             return
         }
         
-        cell.cellImageView.image = image
-        cell.dateLabel.text = dateFormatter.string(from: Date())
+        cell.cellImageView?.image = image
+        cell.dateLabel?.text = dateFormatter.string(from: Date())
         
         let like: String = indexPath.row % 2 == 0 ? "Active Like" : "No Active Like"
         if let likeImage = UIImage(named: like) {
-            cell.likeButton.setImage(likeImage, for: .normal)
+            cell.likeButton?.setImage(likeImage, for: .normal)
         }
     }
 }

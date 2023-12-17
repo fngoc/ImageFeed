@@ -46,11 +46,12 @@ final class ProfileService {
         task.resume()
     }
     
+    // MARK: - Private methods
     private func makeProfileRequest() -> URLRequest {
         URLRequest.makeHTTPRequest(
             path: "/me",
             httpMethod: "GET",
-            baseURL: URL(string: "https://api.unsplash.com")!
+            baseURL: URL(string: Constants.apiUrl)!
         )
     }
     

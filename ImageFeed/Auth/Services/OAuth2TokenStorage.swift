@@ -6,6 +6,7 @@
 //
 
 import SwiftKeychainWrapper
+import Foundation
 
 final class OAuth2TokenStorage {
     
@@ -20,13 +21,18 @@ final class OAuth2TokenStorage {
             keychain.string(forKey: Keys.token.rawValue)
         }
         set {
-            guard 
+            guard
                 let newValue = newValue,
                 keychain.set(newValue, forKey: Keys.token.rawValue)
+                
             else {
                 print("Token not save in keychain")
                 return
             }
         }
+    }
+    
+    static func removeAllKeys() {
+        KeychainWrapper.standard.removeAllKeys()
     }
 }

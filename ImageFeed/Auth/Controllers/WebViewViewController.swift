@@ -10,8 +10,9 @@ import WebKit
 
 final class WebViewViewController: UIViewController {
     
-    @IBOutlet private weak var webView: WKWebView!
-    @IBOutlet private weak var progressView: UIProgressView!
+    private var webView: WKWebView?
+    private var progressView: UIProgressView?
+    private var backButton: UIButton?
     
     weak var delegate: WebViewViewControllerDelegate?
     
@@ -20,7 +21,58 @@ final class WebViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        webViewLoad()
+        buttonLoad()
+        progressViewLoad()
+        
+        estimatedProgressObservation = webView?.observe(
+            \.estimatedProgress,
+             options: [],
+             changeHandler: { [weak self] _, _ in
+                 guard let self = self else { return }
+                 self.updateProgress()
+             }
+        )
+        updateProgress()
+    }
+    
+    // MARK: - Actions
+    @objc
+    private func didTapBackButton(_ sender: UIButton) {
+        delegate?.webViewViewControllerDidCancel(self)
+    }
+    
+    // MARK: - Private methods
+    private func updateProgress() {
+        guard let progressView,
+              let webView
+        else {
+            print("ProgressView or webView load failed")
+            return
+        }
+        progressView.progress = Float(webView.estimatedProgress)
+        progressView.isHidden = fabs((webView.estimatedProgress) - 1.0) <= 0.0001
+    }
+    
+    private func webViewLoad() {
+        webView = WKWebView()
+        
+        guard let webView else {
+            print("WebView load failed")
+            return
+        }
+        
+        webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
+        
+        view.addSubview(webView)
+        
+        NSLayoutConstraint.activate([
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         
         var urlComponents = URLComponents(string: Constants.unsplashAuthorizeURLString)!
         urlComponents.queryItems = [
@@ -33,27 +85,54 @@ final class WebViewViewController: UIViewController {
         
         let request = URLRequest(url: url)
         webView.load(request)
+    }
+    
+    private func progressViewLoad() {
+        progressView = UIProgressView()
         
-        estimatedProgressObservation = webView.observe(
-            \.estimatedProgress,
-             options: [],
-             changeHandler: { [weak self] _, _ in
-                 guard let self = self else { return }
-                 self.updateProgress()
-             }
+        guard let progressView,
+              let backButton
+        else {
+            print("ProgressView load failed")
+            return
+        }
+        
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.progressTintColor = .myBlack
+        
+        view.addSubview(progressView)
+        
+        NSLayoutConstraint.activate([
+            progressView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            progressView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            progressView.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 10)
+        ])
+    }
+    
+    private func buttonLoad() {
+        backButton = UIButton.systemButton(
+            with: UIImage(named: "nav_back_button")!,
+            target: self,
+            action: #selector(Self.didTapBackButton(_:))
         )
-        updateProgress()
-    }
-    
-    // MARK: - Actions
-    @IBAction private func didTapBackButton(_ sender: UIButton) {
-        delegate?.webViewViewControllerDidCancel(self)
-    }
-    
-    // MARK: - Private methods
-    private func updateProgress() {
-        progressView.progress = Float(webView.estimatedProgress)
-        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
+        
+        guard let backButton else {
+            print("BackButton load failed")
+            return
+        }
+        
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.tintColor = .myBlack
+        
+        view.addSubview(backButton)
+        
+        NSLayoutConstraint.activate([
+            backButton.widthAnchor.constraint(equalToConstant: 24),
+            backButton.heightAnchor.constraint(equalToConstant: 24),
+            
+            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 11)
+        ])
     }
 }
 

@@ -55,6 +55,7 @@ final class ProfileImageService {
             task.resume()
     }
     
+    // MARK: - Private methods
     private func object(
         for request: URLRequest,
         completion: @escaping (Result<UserResult, Error>) -> Void
@@ -74,7 +75,7 @@ final class ProfileImageService {
         URLRequest.makeHTTPRequest(
             path: "/users/\(username)",
             httpMethod: "GET",
-            baseURL: URL(string: "https://api.unsplash.com")!
+            baseURL: URL(string: Constants.apiUrl)!
         )
     }
 }
