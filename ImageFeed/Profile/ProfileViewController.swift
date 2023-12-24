@@ -23,9 +23,6 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Удаление всех ключей для теста
-        OAuth2TokenStorage.removeAllKeys()
-        
         view.backgroundColor = .myBlack
         
         imageViewLoad()

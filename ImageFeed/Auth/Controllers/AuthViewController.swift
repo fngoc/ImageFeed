@@ -18,7 +18,7 @@ final class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        oAuth2Service = OAuth2Service()
+        oAuth2Service = OAuth2Service.shared
         view.backgroundColor = UIColor.myBlack
         
         imageViewLoad()

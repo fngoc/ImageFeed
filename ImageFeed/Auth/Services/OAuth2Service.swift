@@ -46,6 +46,18 @@ final class OAuth2Service {
             self.task = task
             task.resume()
         }
+    
+    func isAuthorized() -> Bool {
+        return oAuth2TokenStorage.token != nil
+    }
+    
+    func getToken() -> String {
+        guard let token = oAuth2TokenStorage.token else {
+            print("Something wrong with token in tokenStorage")
+            return ""
+        }
+        return token
+    }
 
     // MARK: - Private methods
     private func object(

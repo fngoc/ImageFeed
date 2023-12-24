@@ -9,7 +9,7 @@ import UIKit
 
 final class ImagesListViewController: UIViewController {
     
-    private var tableView: UITableView?
+    @IBOutlet weak private var tableView: UITableView!
     
     private let photoName: [String] = Array(0..<20).map { "\($0)" }
     
@@ -71,8 +71,6 @@ extension ImagesListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
-//        let imageListCell = ImagesListCell(style: .default, reuseIdentifier: nil)
-        
         guard let imageListCell = cell as? ImagesListCell else {
             return UITableViewCell()
         }
@@ -86,12 +84,12 @@ extension ImagesListViewController: UITableViewDataSource {
             return
         }
         
-        cell.cellImageView?.image = image
-        cell.dateLabel?.text = dateFormatter.string(from: Date())
+        cell.cellImageView.image = image
+        cell.dateLabel.text = dateFormatter.string(from: Date())
         
         let like: String = indexPath.row % 2 == 0 ? "Active Like" : "No Active Like"
         if let likeImage = UIImage(named: like) {
-            cell.likeButton?.setImage(likeImage, for: .normal)
+            cell.likeButton.setImage(likeImage, for: .normal)
         }
     }
 }

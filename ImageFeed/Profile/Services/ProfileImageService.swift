@@ -12,7 +12,7 @@ final class ProfileImageService {
     static let shared: ProfileImageService = ProfileImageService()
     static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
     
-    private let oauth2TokenStorage: OAuth2TokenStorage = OAuth2TokenStorage()
+    private let oAuth2Service = OAuth2Service.shared
     
     private let session = URLSession.shared
     private var task: URLSessionTask?
@@ -23,7 +23,7 @@ final class ProfileImageService {
         username: String,
         _ completion: @escaping (Result<String, Error>) -> Void) {
             var request = profileImageURLRequest(username: username)
-            request.setValue("Bearer \(oauth2TokenStorage.token ?? "")", forHTTPHeaderField: "Authorization")
+            request.setValue("Bearer \(oAuth2Service.getToken())", forHTTPHeaderField: "Authorization")
             
             assert(Thread.isMainThread)
             task?.cancel()
