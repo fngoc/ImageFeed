@@ -9,18 +9,16 @@ import UIKit
 
 final class AuthViewController: UIViewController {
     
-    private let ShowWebViewSegueIdentifier = "ShowWebView"
-    
-    @IBOutlet private weak var authButton: UIButton!
+    private var authButton: UIButton?
     private var logoImageView: UIImageView?
-    private var oAuth2Service: OAuth2Service?
     
+    private var oAuth2Service: OAuth2Service?
     weak var delegate: AuthViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        oAuth2Service = OAuth2Service()
+        oAuth2Service = OAuth2Service.shared
         view.backgroundColor = UIColor.myBlack
         
         imageViewLoad()
@@ -29,24 +27,23 @@ final class AuthViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func didTouchAuthButton(_ sender: UIButton) {
+    @objc
+    private func didTouchAuthButton(_ sender: UIButton) {
         print("Tap to login")
-    }
-    
-    // MARK: - Prepare segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ShowWebViewSegueIdentifier {
-            guard let webViewViewController = segue.destination as? WebViewViewController else {
-                fatalError("Failed to prepare for \(ShowWebViewSegueIdentifier)")
-            }
-            webViewViewController.delegate = self
-        } else {
-            super.prepare(for: segue, sender: sender)
-        }
+        let webViewController = WebViewViewController()
+        webViewController.delegate = self
+        webViewController.modalPresentationStyle = .fullScreen
+        present(webViewController, animated: true, completion: nil)
     }
     
     // MARK: - Private Load UI
     private func buttonLoad() {
+        authButton = UIButton.systemButton(
+            with: UIImage(),
+            target: self,
+            action: #selector(Self.didTouchAuthButton(_:))
+        )
+        
         guard let authButton else {
             print("Button load failed")
             return
@@ -76,7 +73,9 @@ final class AuthViewController: UIViewController {
     
     // MARK: - Private Load Constraints
     private func constraintsLoad() {
-        guard let logoImageView, let authButton else {
+        guard let logoImageView,
+              let authButton
+        else {
             return
         }
         

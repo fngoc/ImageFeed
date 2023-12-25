@@ -12,21 +12,43 @@ final class ProfileViewController: UIViewController {
     private var imageView: UIImageView?
     private var nameLabel: UILabel?
     private var loginLabel: UILabel?
-    private var textLabel: UILabel?
+    private var descriptionLabel: UILabel?
     private var logoutButton: UIButton?
     
+    private let profileService = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
+    
+    private var profileImageServiceObserver: NSObjectProtocol?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.myBlack
+        view.backgroundColor = .myBlack
         
         imageViewLoad()
         nameLabelLoad()
         loginLabelLoad()
-        textLabelLoad()
+        descriptionLabelLoad()
         logoutButtonLoad()
         
         constraintsLoad()
+        
+        profileImageServiceObserver = NotificationCenter.default
+            .addObserver(
+                forName: ProfileImageService.didChangeNotification,
+                object: nil,
+                queue: .main) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.updateAvatar()
+                }
+        updateAvatar()
+        
+        updateProfileDetails(profile: profileService.profile ?? Profile(
+            username: "Логин не загрузился",
+            loginName: "Логин не загрузился",
+            name: "Имя не загрузилось",
+            bio: "Описание не загрузилось")
+        )
     }
     
     // MARK: - Actions
@@ -35,7 +57,22 @@ final class ProfileViewController: UIViewController {
         print("Tap logout button")
     }
     
+    func updateProfileDetails(profile: Profile) {
+        self.nameLabel?.text = profile.name
+        self.loginLabel?.text = profile.loginName
+        self.descriptionLabel?.text = profile.bio
+    }
+    
     // MARK: - Private Load UI
+    private func updateAvatar() {
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL),
+            let imageView = imageView
+        else { return }
+        profileImageService.avatarLoad(by: url, setIn: imageView)
+    }
+    
     private func logoutButtonLoad() {
         self.logoutButton = UIButton.systemButton(
             with: UIImage(named: "Exit")!,
@@ -53,19 +90,18 @@ final class ProfileViewController: UIViewController {
         view.addSubview(logoutButton)
     }
     
-    private func textLabelLoad() {
-        self.textLabel = UILabel()
+    private func descriptionLabelLoad() {
+        self.descriptionLabel = UILabel()
         
-        guard let textLabel else {
+        guard let descriptionLabel else {
             print("Text label load failed")
             return
         }
         
-        textLabel.text = "Hello, world!"
-        textLabel.textColor = UIColor.myWhite
-        textLabel.font = UIFont(name: "SF Pro", size: 13)
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(textLabel)
+        descriptionLabel.textColor = UIColor.myWhite
+        descriptionLabel.font = UIFont(name: "SF Pro", size: 13)
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(descriptionLabel)
     }
     
     private func loginLabelLoad() {
@@ -76,7 +112,6 @@ final class ProfileViewController: UIViewController {
             return
         }
         
-        loginLabel.text = "@ekaterina_nov"
         loginLabel.textColor = UIColor.myGray
         loginLabel.font = UIFont(name: "SF Pro", size: 13)
         loginLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -91,7 +126,6 @@ final class ProfileViewController: UIViewController {
             return
         }
         
-        nameLabel.text = "Екатерина Новикова"
         nameLabel.textColor = UIColor.myWhite
         nameLabel.font = UIFont(name: "SF Pro Bold", size: 23)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +133,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func imageViewLoad() {
-        self.imageView = UIImageView(image: UIImage(named: "Photo"))
+        self.imageView = UIImageView(image: UIImage(named: "placeholder.png"))
         
         guard let imageView else {
             print("Image view load failed")
@@ -113,7 +147,7 @@ final class ProfileViewController: UIViewController {
     // MARK: - Private Load Constraints
     private func constraintsLoad() {
         guard let imageView, let nameLabel, let loginLabel,
-              let textLabel, let logoutButton else {
+              let descriptionLabel, let logoutButton else {
             return
         }
         
@@ -129,8 +163,8 @@ final class ProfileViewController: UIViewController {
             loginLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
             loginLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
             
-            textLabel.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 8),
-            textLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 8),
+            descriptionLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
             
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             logoutButton.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)

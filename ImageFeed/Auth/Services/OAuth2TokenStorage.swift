@@ -5,7 +5,7 @@
 //  Created by Виталий Хайдаров on 19.11.2023.
 //
 
-import Foundation
+import SwiftKeychainWrapper
 
 final class OAuth2TokenStorage {
     
@@ -13,14 +13,20 @@ final class OAuth2TokenStorage {
         case token
     }
     
-    private let userDefault = UserDefaults.standard
+    private let keychain = KeychainWrapper.standard
     
     var token: String? {
         get {
-            userDefault.string(forKey: Keys.token.rawValue)
+            keychain.string(forKey: Keys.token.rawValue)
         }
         set {
-            userDefault.set(newValue, forKey: Keys.token.rawValue)
+            guard
+                let newValue = newValue,
+                keychain.set(newValue, forKey: Keys.token.rawValue)
+            else {
+                print("Token not save in keychain")
+                return
+            }
         }
     }
 }

@@ -24,8 +24,29 @@ final class ImagesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableViewLoad()
+    }
+    
+    private func tableViewLoad() {
+        tableView = UITableView()
         
+        guard let tableView else {
+            print("UITableView load failed")
+            return
+        }
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
+        tableView.backgroundColor = .myBlack
+        
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,7 +76,6 @@ extension ImagesListViewController: UITableViewDataSource {
         }
         
         configCell(for: imageListCell, with: indexPath)
-        
         return imageListCell
     }
     
