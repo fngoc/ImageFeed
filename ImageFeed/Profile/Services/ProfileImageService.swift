@@ -19,6 +19,8 @@ final class ProfileImageService {
     
     private(set) var avatarURL: String?
     
+    private init() {}
+    
     func fetchProfileImageURL(
         username: String,
         _ completion: @escaping (Result<String, Error>) -> Void) {
