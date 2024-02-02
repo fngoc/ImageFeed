@@ -58,6 +58,10 @@ final class OAuth2Service {
         }
         return token
     }
+    
+    func logOut() {
+        oAuth2TokenStorage.removeKeychain()
+    }
 
     // MARK: - Private methods
     private func object(
@@ -73,15 +77,6 @@ final class OAuth2Service {
             }
             completion(response)
         }
-    }
-    
-    private func photosRequest(page: Int, perPage: Int) -> URLRequest {
-        URLRequest.makeHTTPRequest(
-            path: "/photos?"
-            + "page=\(page)"
-            + "&&per_page=\(perPage)",
-            httpMethod: "GET"
-        )
     }
     
     private func likeRequest(photoId: String) -> URLRequest {

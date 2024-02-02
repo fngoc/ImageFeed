@@ -55,6 +55,7 @@ final class ProfileViewController: UIViewController {
     @objc
     private func didTapLogoutButton(_ sender: UIButton) {
         print("Tap logout button")
+        profileService.logOut()
     }
     
     func updateProfileDetails(profile: Profile) {

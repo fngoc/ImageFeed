@@ -11,8 +11,8 @@ final class ImagesListViewController: UIViewController {
     
     @IBOutlet weak private var tableView: UITableView!
     
+    private let imagesListService = ImagesListService.shared
     private let photoName: [String] = Array(0..<20).map { "\($0)" }
-    
     private let showSingleImageIdentificator = "ShowSingleImage"
     
     private lazy var dateFormatter: DateFormatter = {
@@ -24,7 +24,18 @@ final class ImagesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableViewLoad()
+//        tableViewLoad()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showSingleImageIdentificator {
+            let viewController = segue.destination as! SingleImageViewController
+            let indexPath = sender as! IndexPath
+            let image = UIImage(named: photoName[indexPath.row])
+            viewController.image = image
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
     }
     
     private func tableViewLoad() {
@@ -48,17 +59,6 @@ final class ImagesListViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showSingleImageIdentificator {
-            let viewController = segue.destination as! SingleImageViewController
-            let indexPath = sender as! IndexPath
-            let image = UIImage(named: photoName[indexPath.row])
-            viewController.image = image
-        } else {
-            super.prepare(for: segue, sender: sender)
-        }
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -74,7 +74,6 @@ extension ImagesListViewController: UITableViewDataSource {
         guard let imageListCell = cell as? ImagesListCell else {
             return UITableViewCell()
         }
-        
         configCell(for: imageListCell, with: indexPath)
         return imageListCell
     }
@@ -96,6 +95,16 @@ extension ImagesListViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension ImagesListViewController: UITableViewDelegate {
+    
+    func tableView(
+      _ tableView: UITableView,
+      willDisplay cell: UITableViewCell,
+      forRowAt indexPath: IndexPath
+    ) {
+        if indexPath.row + 1 == imagesListService.photos.count {
+            imagesListService.fetchPhotosNextPage()
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: showSingleImageIdentificator, sender: indexPath)

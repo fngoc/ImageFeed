@@ -10,6 +10,7 @@ import Foundation
 final class ProfileService {
     
     static let shared: ProfileService = ProfileService()
+    static let oAuth2Service: OAuth2Service = OAuth2Service.shared
     
     private let session = URLSession.shared
     private var task: URLSessionTask?
@@ -46,6 +47,10 @@ final class ProfileService {
         }
         self.task = task
         task.resume()
+    }
+    
+    func logOut() {
+        ProfileService.oAuth2Service.logOut()
     }
     
     // MARK: - Private methods
